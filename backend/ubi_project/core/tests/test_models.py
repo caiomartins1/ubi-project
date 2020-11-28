@@ -2,7 +2,6 @@ from django.test import TestCase
 from django.utils import timezone
 from core.models import Client
 import datetime
-import uuid
 
 
 class ClientModelTest(TestCase):
@@ -36,7 +35,7 @@ class ClientModelTest(TestCase):
         expected_string = 'media/{}/logo.png'.format(client.id)
 
         self.assertEqual(expected_string, client.client_logo)
-    
+
     def test_client_str_representation(self):
         name = 'Caio Martins'
         nickname = 'caiomartins'
@@ -49,10 +48,3 @@ class ClientModelTest(TestCase):
         )
 
         self.assertEqual(name, str(client))
-
-
-
-
-
-
-

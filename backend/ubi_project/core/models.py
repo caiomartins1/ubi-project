@@ -2,11 +2,11 @@ from django.db import models
 from django_countries.fields import CountryField
 import uuid
 
-# Create your models here.
+
 class Client(models.Model):
     class Meta:
         verbose_name = 'client'
-    
+
     uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     name = models.CharField(max_length=100)
     nickname = models.CharField(max_length=30)
