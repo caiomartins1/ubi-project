@@ -19,9 +19,9 @@ class Client(models.Model):
     contact_person_phone = models.CharField(max_length=20, blank=True)
     contact_person_email = models.CharField(max_length=254, blank=True)
     registration_date = models.DateField(blank=False, auto_now=True)
-    contract = models.CharField(max_length=100, null=True, blank=True)
-    contract_start_date = models.DateField(null=True, blank=True)
-    contract_end_date = models.DateField(null=True, blank=True)
+    contract = models.CharField(max_length=100, blank=True)
+    contract_start_date = models.DateField(blank=True)
+    contract_end_date = models.DateField(blank=True)
 
     @property
     def client_logo(self):

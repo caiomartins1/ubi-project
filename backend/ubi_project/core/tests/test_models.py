@@ -6,6 +6,7 @@ import datetime
 
 class ClientModelTest(TestCase):
     """Tests suites for the Client Model"""
+
     def test_create_client__sucessfull(self):
         """Test creating a new client successfull"""
         name = 'Caio Martins'
