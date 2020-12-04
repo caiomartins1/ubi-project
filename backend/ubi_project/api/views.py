@@ -1,6 +1,6 @@
-from rest_framework import viewsets, mixins
+from rest_framework import viewsets
 
-from core.models import Client
+from core.models import Client, Content
 from api import serializers
 
 
@@ -17,3 +17,14 @@ class ClientViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         """Create a new client"""
         serializer.save()
+
+class ContentViewSet(viewsets.ModelViewSet):
+    """Manage contents in the database"""
+    serializer_class = serializers.ContentSerializer
+    queryset = Content.objects.all()
+    lookup_field = 'uuid'
+
+    def get_queryset(self):
+        """Return all content objects"""
+        return self.queryset.all()
+    

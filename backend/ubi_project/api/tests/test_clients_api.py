@@ -47,10 +47,9 @@ class ClientsApiTests(TestCase):
             name='Test User',
             nickname='TestUser1'
         )
-       
         url = detail_url(client.uuid)
         res = self.client.get(url)
-        print(res)
+
         serializer = ClientSerializer(client)
         self.assertEqual(res.data, serializer.data)
 
