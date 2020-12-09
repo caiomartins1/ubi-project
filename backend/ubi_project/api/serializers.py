@@ -15,7 +15,8 @@ class ClientSerializer(serializers.ModelSerializer):
 
 class ContentSerializer(serializers.ModelSerializer):
     """Serializer for the content objects"""
-    
+
+    # title and image
     class Meta:
         model = Content
         fields = ('uuid', 'client', 'title', 'description',)

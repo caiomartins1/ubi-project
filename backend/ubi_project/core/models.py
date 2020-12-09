@@ -7,7 +7,8 @@ class Client(models.Model):
     class Meta:
         verbose_name = 'client'
 
-    uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True)
+    uuid = models.UUIDField(primary_key=True, default=uuid.uuid4,
+                            editable=False, unique=True)
     name = models.CharField(max_length=100)
     nickname = models.CharField(max_length=30)
     vat_number = models.CharField(max_length=20)
@@ -34,8 +35,9 @@ class Client(models.Model):
 class Content(models.Model):
     class Meta:
         verbose_name = 'content'
-    
-    uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True)
+
+    uuid = models.UUIDField(primary_key=True, default=uuid.uuid4,
+                            editable=False, unique=True)
     client = models.ForeignKey(Client, on_delete=models.CASCADE)
     active = models.BooleanField(default=True)
     title = models.CharField(max_length=100)
@@ -50,4 +52,3 @@ class Content(models.Model):
 
     def __str__(self):
         return self.title
-

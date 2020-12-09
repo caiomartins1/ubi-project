@@ -61,7 +61,7 @@ class ClientModelTest(TestCase):
         client = sample_client()
         title = 'Torre de belém'
         description = 'Famous location in Lisbon.'
-        
+
         content = Content.objects.create(
             client=client,
             title=title,
@@ -83,7 +83,6 @@ class ClientModelTest(TestCase):
             title=title,
             description=description
         )
-        
+
         expected_string = content.title
         self.assertEqual(content.title, expected_string)
-        

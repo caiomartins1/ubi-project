@@ -18,6 +18,7 @@ class ClientViewSet(viewsets.ModelViewSet):
         """Create a new client"""
         serializer.save()
 
+
 class ContentViewSet(viewsets.ModelViewSet):
     """Manage contents in the database"""
     serializer_class = serializers.ContentSerializer
@@ -27,4 +28,3 @@ class ContentViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         """Return all content objects"""
         return self.queryset.all()
-    
