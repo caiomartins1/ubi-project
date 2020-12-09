@@ -1,11 +1,20 @@
 from django.test import TestCase
 from django.utils import timezone
-from core.models import Client, Content
+from core.models import Client, Content, ContentHighlight
 import datetime
 
 
 def sample_client(name='Test Client', nickname='TestClient'):
     return Client.objects.create(name=name, nickname=nickname)
+
+
+def sample_content(client, title='Torre de belém',
+                   description='Famous location in Lisbon.'):
+    return Content.objects.create(
+        client=client,
+        title=title,
+        description=description
+    )
 
 
 class ClientModelTest(TestCase):
@@ -73,7 +82,7 @@ class ClientModelTest(TestCase):
         self.assertEqual(content.description, description)
 
     def test_content_string_representation(self):
-        """Test the content string representation"""
+        """Test the Content string representation"""
         client = sample_client()
         title = 'Torre de belém'
         description = 'Famous location in Lisbon.'
@@ -85,4 +94,18 @@ class ClientModelTest(TestCase):
         )
 
         expected_string = content.title
-        self.assertEqual(content.title, expected_string)
+        self.assertEqual(expected_string, str(content))
+
+    def test_content_highlight_string_representation(self):
+        """Test the ContentHighlight string representation"""
+        client = sample_client()
+        content = sample_content(client)
+
+        content_highlight = ContentHighlight.objects.create(
+            client=client,
+            content=content,
+        )
+
+        expected = f'{content} Content Highlight'
+
+        self.assertEqual(expected, str(content_highlight))

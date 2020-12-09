@@ -52,3 +52,19 @@ class Content(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class ContentHighlight(models.Model):
+    class Meta:
+        verbose_name = 'content'
+
+    uuid = models.UUIDField(primary_key=True, default=uuid.uuid4,
+                            editable=False, unique=True)
+    client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    content = models.ForeignKey(Content, on_delete=models.CASCADE)
+    is_always = models.BooleanField(default=True)
+    start_date = models.DateField(null=True, blank=True)
+    end_date = models.DateField(null=True, blank=True)
+
+    def __str__(self):
+        return f'{self.content} Content Highlight'
