@@ -1,6 +1,6 @@
 from rest_framework import viewsets
 
-from core.models import Client, Content
+from core.models import Client, Content, ContentHighlight
 from api import serializers
 
 
@@ -27,4 +27,15 @@ class ContentViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         """Return all content objects"""
+        return self.queryset.all()
+
+
+class ContentHighlightViewSet(viewsets.ModelViewSet):
+    """Manage content highlights in the database"""
+    serializer_class = serializers.ContentHighlightSerializer
+    queryset = ContentHighlight.objects.all()
+    lookup_field = 'uuid'
+
+    def get_queryset(self):
+        """Return all content highlight objects"""
         return self.queryset.all()
