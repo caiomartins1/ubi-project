@@ -54,9 +54,24 @@ class Content(models.Model):
         return self.title
 
 
-class ContentHighlight(models.Model):
+class ContentSibling(models.Model):
     class Meta:
         verbose_name = 'content'
+
+    uuid = models.UUIDField(primary_key=True, default=uuid.uuid4,
+                            editable=False, unique=True)
+    parent = models.ForeignKey(Content, on_delete=models.CASCADE,
+                               to_field="uuid", related_name="parent_uuid")
+    content = models.ForeignKey(Content, on_delete=models.CASCADE,
+                                to_field="uuid", related_name="content_uuid")
+
+    def __str__(self):
+        return f'{self.content} Sibling'
+
+
+class ContentHighlight(models.Model):
+    class Meta:
+        verbose_name = 'highlight'
 
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4,
                             editable=False, unique=True)

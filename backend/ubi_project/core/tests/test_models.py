@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.utils import timezone
-from core.models import Client, Content, ContentHighlight
+from core.models import Client, Content, ContentHighlight, ContentSibling
 import datetime
 
 
@@ -109,3 +109,16 @@ class ClientModelTest(TestCase):
         expected = f'{content} Content Highlight'
 
         self.assertEqual(expected, str(content_highlight))
+
+    def test_content_sibling_string_representation(self):
+        """Test ContentSibling string representation"""
+        client = sample_client()
+        parent = sample_content(client, 'Torre de belem 2', 'Descricao 2')
+        content = sample_content(client)
+        content_sibling = ContentSibling.objects.create(
+            parent=parent,
+            content=content
+        )
+
+        expected = f'{content} Sibling'
+        self.assertEqual(expected, str(content_sibling))

@@ -7,6 +7,7 @@ router = DefaultRouter()
 router.register('clients', views.ClientViewSet)
 router.register('contents', views.ContentViewSet)
 router.register('contenthighlights', views.ContentHighlightViewSet)
+router.register('contentsiblings', views.ContentSiblingViewSet)
 
 app_name = 'api'
 

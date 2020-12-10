@@ -4,24 +4,12 @@ from django.test import TestCase
 from rest_framework import status
 from rest_framework.test import APIClient
 
-from core.models import Content, Client
+from core.models import Content
+from core.tests.test_models import sample_content, sample_client
 from api.serializers import ContentSerializer
 
 
 CONTENTS_URL = reverse('api:content-list')
-
-
-def sample_client(name='Test Client', nickname='TestClient'):
-    return Client.objects.create(name=name, nickname=nickname)
-
-
-def sample_content(client, title='Torre de belém',
-                   description='Famous location in Lisbon.'):
-    return Content.objects.create(
-        client=client,
-        title=title,
-        description=description
-    )
 
 
 def detail_url(content_uuid):
