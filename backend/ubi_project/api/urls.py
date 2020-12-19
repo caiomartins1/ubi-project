@@ -8,6 +8,7 @@ router.register('clients', views.ClientViewSet)
 router.register('contents', views.ContentViewSet)
 router.register('contenthighlights', views.ContentHighlightViewSet)
 router.register('contentsiblings', views.ContentSiblingViewSet)
+router.register('contentupselling', views.ContentUpsellingViewSet)
 
 app_name = 'api'
 

@@ -9,7 +9,7 @@ flake8==3.8.4
 httpie==2.3.0
 idna==2.10
 mccabe==0.6.1
-psycopg2==2.8.6
+psycopg2-binary==2.8.6
 pycodestyle==2.6.0
 pyflakes==2.2.0
 Pygments==2.7.2
