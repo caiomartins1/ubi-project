@@ -1,6 +1,7 @@
 from rest_framework import viewsets
 
-from core.models import Client, Content, ContentHighlight, ContentSibling
+from core.models import Client, Content, ContentHighlight, ContentSibling, \
+                        ContentUpselling
 from api import serializers
 
 
@@ -49,4 +50,15 @@ class ContentSiblingViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         """Return all content sibling objects"""
+        return self.queryset.all()
+
+
+class ContentUpsellingViewSet(viewsets.ModelViewSet):
+    """Manage content upselling in the database"""
+    serializer_class = serializers.ContentUpsellingSerializer
+    queryset = ContentUpselling.objects.all()
+    lookup_field = 'uuid'
+
+    def get_queryset(self):
+        """Return all content upselling objects"""
         return self.queryset.all()

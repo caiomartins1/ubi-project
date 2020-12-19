@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from core.models import Client, Content, ContentHighlight, ContentSibling
+from core.models import Client, Content, ContentHighlight, ContentSibling, \
+                        ContentUpselling
 
 # TODO: define camps for list and detailed views, countrycamp not serializable
 
@@ -37,5 +38,14 @@ class ContentSiblingSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = ContentSibling
+        fields = '__all__'
+        read_only_fields = ('uuid',)
+
+
+class ContentUpsellingSerializer(serializers.ModelSerializer):
+    """Serializer for the ContentUpselling objects"""
+
+    class Meta:
+        model = ContentUpselling
         fields = '__all__'
         read_only_fields = ('uuid',)
