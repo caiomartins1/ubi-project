@@ -1,5 +1,6 @@
 from django.db import models
 from django_countries.fields import CountryField
+from django_pgviews import view as pg
 import uuid
 
 
@@ -98,3 +99,115 @@ class ContentUpselling(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class ContentCard(pg.View): #TODO: Integrate Images and Translation tool
+
+    uuid = models.UUIDField(unique=True)
+    title = models.CharField(max_length=100)
+    client_id = models.UUIDField()
+    upselling_uuid = models.UUIDField()
+    highlight_uuid = models.UUIDField()
+    is_parent = models.BooleanField()
+    is_institutional = models.BooleanField()
+    active_highlight = models.BooleanField()
+    active = models.BooleanField()
+
+    sql = """
+        SELECT  c.uuid AS id,
+            c.uuid,
+            c.title,
+            c.client_id,
+            u.uuid AS upselling_uuid,
+            h.uuid AS highlight_uuid,
+            c.is_parent,
+                CASE
+                    WHEN h.is_always OR CURRENT_DATE >= h.start_date AND CURRENT_DATE <= h.end_date THEN true
+                    ELSE false
+                END as active_highlight,
+            c.active,
+            c.is_institutional
+        FROM core_content AS c
+            LEFT JOIN core_contentupselling u ON u.content_id = c.uuid
+            LEFT JOIN core_contenthighlight h ON h.content_id = c.uuid
+        WHERE c.active
+        ORDER BY c.title;
+    """
+
+    class Meta:
+        managed = False
+        db_table = 'content_card_view'
+
+
+class UpsellingCard(pg.View):
+
+    uuid = models.UUIDField(unique=True)
+    title = models.CharField(max_length=100)
+    client_id = models.UUIDField()
+    upselling_uuid = models.UUIDField()
+    highlight_uuid = models.UUIDField()
+    is_parent = models.BooleanField()
+    is_institutional = models.BooleanField()
+    active_highlight = models.BooleanField()
+    active = models.BooleanField()
+
+    sql = """
+        SELECT c.uuid as id,
+            c.uuid,
+            c.title,
+            c.client_id,
+            u.uuid AS upselling_uuid,
+            h.uuid AS highlight_uuid,
+            c.is_parent,
+                CASE
+                    WHEN h.is_always OR CURRENT_DATE >= h.start_date AND CURRENT_DATE <= h.end_date THEN true
+                    ELSE false
+                END as active_highlight,
+            c.active,
+            c.is_institutional
+        FROM core_contentupselling u, core_content c
+            LEFT JOIN core_contenthighlight h ON h.content_id = c.uuid
+        WHERE u.content_id = c.uuid AND c.active
+        ORDER BY c.title;
+    """
+
+    class Meta:
+        managed = False
+        db_table = 'upselling_card_view'
+
+
+class HighlightCard(pg.View):
+
+    uuid = models.UUIDField(unique=True)
+    title = models.CharField(max_length=100)
+    client_id = models.UUIDField()
+    upselling_uuid = models.UUIDField()
+    highlight_uuid = models.UUIDField()
+    is_parent = models.BooleanField()
+    is_institutional = models.BooleanField()
+    active_highlight = models.BooleanField()
+    active = models.BooleanField()
+
+    sql = """
+        SELECT c.uuid as id,
+            c.uuid,
+            c.title,
+            c.client_id,
+            u.uuid AS upselling_uuid,
+            h.uuid AS highlight_uuid,
+            c.is_parent,
+                CASE
+                    WHEN h.is_always OR CURRENT_DATE >= h.start_date AND CURRENT_DATE <= h.end_date THEN true
+                    ELSE false
+                END AS active_highlight,
+            c.active,
+            c.is_institutional
+        FROM core_contenthighlight h, core_content c
+            LEFT JOIN core_contentupselling u ON u.content_id = c.uuid
+        WHERE h.content_id = c.uuid AND c.active
+        ORDER BY c.title;
+    """
+
+    class Meta:
+        managed = False
+        db_table = 'highlight_card_view'

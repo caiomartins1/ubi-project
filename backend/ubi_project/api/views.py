@@ -1,7 +1,9 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, mixins
 
 from core.models import Client, Content, ContentHighlight, ContentSibling, \
-                        ContentUpselling
+                        ContentUpselling, ContentCard, HighlightCard, \
+                        UpsellingCard
+
 from api import serializers
 
 
@@ -62,3 +64,29 @@ class ContentUpsellingViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         """Return all content upselling objects"""
         return self.queryset.all()
+
+
+
+class BaseCardAttrViewSet(viewsets.GenericViewSet, mixins.ListModelMixin):
+    """Base viewset for cards attributes"""
+    def get_queryset(self):
+        """Return all ContentCard objects"""
+        return self.queryset.all()
+
+
+class ContentCardViewSet(BaseCardAttrViewSet):
+    """List Content Cards"""
+    queryset = ContentCard.objects.all()
+    serializer_class = serializers.ContentCardSerializer
+
+
+class UpsellingCardViewSet(BaseCardAttrViewSet):
+    """List Content Cards"""
+    queryset = UpsellingCard.objects.all()
+    serializer_class = serializers.UpsellingCardSerializer
+
+
+class HighlightCardViewSet(BaseCardAttrViewSet):
+    """List Content Cards"""
+    queryset = HighlightCard.objects.all()
+    serializer_class = serializers.HighlightCardSerializer
