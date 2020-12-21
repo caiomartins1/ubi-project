@@ -2,6 +2,15 @@ from django.db import models
 from django_countries.fields import CountryField
 from django_pgviews import view as pg
 import uuid
+import os
+
+
+def content_image_file_path(instance, filename):
+    """Generate filepath for a new content image"""
+    ext = filename.split('.')[-1]
+    filename = f'{uuid.uuid4()}.{ext}'
+
+    return os.path.join('uploads/content/', filename)
 
 
 class Client(models.Model):
@@ -46,7 +55,8 @@ class Content(models.Model):
     address = models.CharField(max_length=100, blank=True)
     zip_code = models.CharField(max_length=20, blank=True)
     city = models.CharField(max_length=100, blank=True)
-    country = CountryField(blank=True)
+    image = models.ImageField(null=True, upload_to=content_image_file_path)
+    # country = CountryField(blank=True)
     # geolocation = PointField(blank=True)
     is_parent = models.BooleanField(default=False)
     is_institutional = models.BooleanField(default=False)
@@ -101,7 +111,7 @@ class ContentUpselling(models.Model):
         return self.title
 
 
-class ContentCard(pg.View): #TODO: Integrate Images and Translation tool
+class ContentCard(pg.View):  # TODO: Integrate Images and Translation tool
 
     uuid = models.UUIDField(unique=True)
     title = models.CharField(max_length=100)
@@ -117,12 +127,14 @@ class ContentCard(pg.View): #TODO: Integrate Images and Translation tool
         SELECT  c.uuid AS id,
             c.uuid,
             c.title,
+            c.image,
             c.client_id,
             u.uuid AS upselling_uuid,
             h.uuid AS highlight_uuid,
             c.is_parent,
                 CASE
-                    WHEN h.is_always OR CURRENT_DATE >= h.start_date AND CURRENT_DATE <= h.end_date THEN true
+                    WHEN h.is_always OR CURRENT_DATE >= h.start_date AND
+                        CURRENT_DATE <= h.end_date THEN true
                     ELSE false
                 END as active_highlight,
             c.active,
@@ -155,12 +167,14 @@ class UpsellingCard(pg.View):
         SELECT c.uuid as id,
             c.uuid,
             c.title,
+            c.image,
             c.client_id,
             u.uuid AS upselling_uuid,
             h.uuid AS highlight_uuid,
             c.is_parent,
                 CASE
-                    WHEN h.is_always OR CURRENT_DATE >= h.start_date AND CURRENT_DATE <= h.end_date THEN true
+                    WHEN h.is_always OR CURRENT_DATE >= h.start_date AND
+                        CURRENT_DATE <= h.end_date THEN true
                     ELSE false
                 END as active_highlight,
             c.active,
@@ -192,12 +206,14 @@ class HighlightCard(pg.View):
         SELECT c.uuid as id,
             c.uuid,
             c.title,
+            c.image,
             c.client_id,
             u.uuid AS upselling_uuid,
             h.uuid AS highlight_uuid,
             c.is_parent,
                 CASE
-                    WHEN h.is_always OR CURRENT_DATE >= h.start_date AND CURRENT_DATE <= h.end_date THEN true
+                    WHEN h.is_always OR CURRENT_DATE >= h.start_date AND
+                        CURRENT_DATE <= h.end_date THEN true
                     ELSE false
                 END AS active_highlight,
             c.active,

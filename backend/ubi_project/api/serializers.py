@@ -1,6 +1,7 @@
 from rest_framework import serializers
-from core.models import Client, Content, ContentHighlight, ContentSibling, \
-                        ContentUpselling, ContentCard, HighlightCard, UpsellingCard
+from core.models import Client, Content, ContentHighlight, \
+                        ContentSibling, ContentUpselling,  \
+                        ContentCard, HighlightCard, UpsellingCard
 
 # TODO: define camps for list and detailed views, countrycamp not serializable
 
@@ -20,7 +21,16 @@ class ContentSerializer(serializers.ModelSerializer):
     # title and image
     class Meta:
         model = Content
-        fields = ('uuid', 'client', 'title', 'description',)
+        fields = ('uuid', 'client', 'title', 'description', 'image')
+        read_only_fields = ('uuid',)
+
+
+class ContentImageSerializer(serializers.ModelSerializer):
+    """Serializer for uploading images to contents"""
+
+    class Meta:
+        model = Content
+        fields = ('uuid', 'image')
         read_only_fields = ('uuid',)
 
 

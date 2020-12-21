@@ -1,4 +1,7 @@
-from rest_framework import viewsets, mixins
+from rest_framework.decorators import action
+from rest_framework.response import Response
+
+from rest_framework import viewsets, mixins, status
 
 from core.models import Client, Content, ContentHighlight, ContentSibling, \
                         ContentUpselling, ContentCard, HighlightCard, \
@@ -26,11 +29,37 @@ class ContentViewSet(viewsets.ModelViewSet):
     """Manage contents in the database"""
     serializer_class = serializers.ContentSerializer
     queryset = Content.objects.all()
-    lookup_field = 'uuid'
 
     def get_queryset(self):
         """Return all content objects"""
         return self.queryset.all()
+
+    def get_serializer_class(self):
+        """Return apropried serializer class"""
+        if self.action == 'upload_image':
+            return serializers.ContentImageSerializer
+
+        return self.serializer_class
+
+    @action(methods=['POST'], detail=True, url_path='upload-image')
+    def upload_image(self, request, pk=None):
+        """Upload an image to a content"""
+        content = self.get_object()
+        serializer = self.get_serializer(
+            content,
+            data=request.data
+        )
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(
+                serializer.data,
+                status=status.HTTP_200_OK
+            )
+        return Response(
+            serializer.errors,
+            status=status.HTTP_400_BAD_REQUEST
+        )
 
 
 class ContentHighlightViewSet(viewsets.ModelViewSet):
@@ -64,7 +93,6 @@ class ContentUpsellingViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         """Return all content upselling objects"""
         return self.queryset.all()
-
 
 
 class BaseCardAttrViewSet(viewsets.GenericViewSet, mixins.ListModelMixin):

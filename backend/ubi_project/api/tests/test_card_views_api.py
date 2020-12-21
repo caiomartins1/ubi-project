@@ -25,8 +25,8 @@ class CardsApiTests(TestCase):
     """Test the card views api"""
 
     def setUp(self):
-        self.client =  APIClient()
-    
+        self.client = APIClient()
+
     def test_retrieve_content_card_list(self):
         """Test retrieving a list of content cards"""
         client = sample_client()
@@ -43,12 +43,12 @@ class CardsApiTests(TestCase):
 
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         self.assertEqual(res.data, serializer.data)
-    
+
     def test_retrieve_upselling_card_list(self):
         """Test retrieving a list of upselling cards"""
         client = sample_client()
         content = sample_content(client)
-        
+
         ContentUpselling.objects.create(
             client=client,
             content=content,
@@ -76,7 +76,7 @@ class CardsApiTests(TestCase):
         """Test retrieving a list of highlight cards"""
         client = sample_client()
         content = sample_content(client)
-        
+
         ContentHighlight.objects.create(
             client=client,
             content=content,
@@ -97,4 +97,3 @@ class CardsApiTests(TestCase):
 
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         self.assertEqual(res.data, serializer.data)
-
