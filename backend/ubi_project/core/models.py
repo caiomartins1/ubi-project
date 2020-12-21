@@ -115,6 +115,7 @@ class ContentCard(pg.View):  # TODO: Integrate Images and Translation tool
 
     uuid = models.UUIDField(unique=True)
     title = models.CharField(max_length=100)
+    image = models.ImageField(null=True)
     client_id = models.UUIDField()
     upselling_uuid = models.UUIDField()
     highlight_uuid = models.UUIDField()
@@ -155,6 +156,7 @@ class UpsellingCard(pg.View):
 
     uuid = models.UUIDField(unique=True)
     title = models.CharField(max_length=100)
+    image = models.ImageField(null=True)
     client_id = models.UUIDField()
     upselling_uuid = models.UUIDField()
     highlight_uuid = models.UUIDField()
@@ -194,6 +196,7 @@ class HighlightCard(pg.View):
 
     uuid = models.UUIDField(unique=True)
     title = models.CharField(max_length=100)
+    image = models.ImageField(null=True)
     client_id = models.UUIDField()
     upselling_uuid = models.UUIDField()
     highlight_uuid = models.UUIDField()
