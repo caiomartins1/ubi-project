@@ -1,6 +1,6 @@
 # PWA Project
 
-# Project setup
+## Project setup
 
 Follow this steps to run the project on your machine.
 
