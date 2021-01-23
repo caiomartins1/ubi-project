@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Advent+Pro:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+
+.home-page {
+  font-size: 16px;
+  background-color: #00021c;
+  background-image: url('../../assets/home-brackground.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  max-height: 896px;
+  margin: auto;
+}
+
+.home-title {
+  font-family: 'Advent Pro', sans-serif;
+  font-weight: 500;
+  font-size: 2.5em;
+  color: #ffffff;
+  text-align: center;
+  padding-top: 3vh;
+}
+
+.home-subheading-container {
+  text-align: right;
+  font-family: 'Advent Pro', sans-serif;
+  color: #ffffff;
+  margin-top: 20vh;
+  margin-right: 1.2em;
+}
+
+.home-subheading1 {
+  font-size: 2.5em;
+  font-weight: 700;
+}
+
+.home-subheading2 {
+  line-height: 32px;
+  margin-top: 1vh;
+  font-size: 2em;
+  font-weight: 400;
+}
+
+.home-main-buttons-container {
+  margin-top: 5vh;
+}
+
+.home-horizontal-buttons-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.home-action-buttom {
+  background-color: rgba(130, 181, 210, 0.78);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 37vw;
+  padding: 1.25em 0.6em;
+  margin: 10px;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.home-action-buttom:hover {
+  background-color: rgba(135, 185, 215, 1);
+}
+
+.home-action-buttom-icon {
+  width: 3.13em;
+}
+
+.home-action-buttom-title {
+  font-family: 'Patrick Hand', cursive;
+  color: #ffffff;
+  font-size: 1.25em;
+  margin-top: 0.2em;
+}
+
+.home-language-buttom-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2vh;
+}
+
+.home-language-buttom {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0.94em 0px;
+  font-family: 'Patrick Hand', cursive;
+  color: #ffffff;
+  width: 90vw;
+  background-color: rgba(130, 181, 210, 0.78);
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.home-language-buttom:hover {
+  background-color: rgba(135, 185, 215, 1);
+}
+
+.home-language-buttom-icon {
+  margin-left: 20vw;
+}
+
+.home-language-buttom-text {
+  font-size: 1.25em;
+  margin-left: 1.88em;
+}
+
+@media only screen and (min-height: 800px) {
+  .home-main-buttons-container {
+    margin-top: 10vh;
+  }
+}
+
+@media only screen and (max-height: 640px) {
+  .home-page {
+    font-size: 12px;
+  }
+}
+
+@media only screen and (min-height: 894px) {
+  .home-main-buttons-container {
+    margin-top: 5vh;
+  }
+
+  .home-subheading-container {
+    margin-top: 30vh;
+  }
+}
