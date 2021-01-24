@@ -1,13 +1,15 @@
 // TODO: Language dropdown
 
 import React from 'react';
-import './index.css';
+import { Link } from 'react-router-dom';
 
 import exploreIcon from '../../assets/icons/explore-icon.png';
 import upsellingIcon from '../../assets/icons/upselling-icon.png';
 import highlightedIcon from '../../assets/icons/highlighted-icon.png';
 import routesIcon from '../../assets/icons/routes-icon.png';
 import ukFlagIcon from '../../assets/icons/uk-flag-icon.png';
+
+import './index.css';
 
 function Home() {
   return (
@@ -22,31 +24,31 @@ function Home() {
 
       <div className="home-main-buttons-container">
         <div className="home-horizontal-buttons-container">
-          <div className="home-action-buttom">
+          <Link to="/explore" className="home-buttom-link home-action-buttom">
             <img src={exploreIcon} alt="Explore" className="home-action-buttom-icon"/>
 
             <p className="home-action-buttom-title">Explore</p>
-          </div>
+          </Link>
 
-          <div className="home-action-buttom">
+          <Link to="/explore" className="home-buttom-link home-action-buttom">
             <img src={upsellingIcon} alt="Upselling" className="home-action-buttom-icon"/>
 
             <p className="home-action-buttom-title">Upselling</p>
-          </div>
+          </Link>
         </div>
 
         <div className="home-horizontal-buttons-container">
-          <div className="home-action-buttom">
+          <Link to="/explore" className="home-buttom-link home-action-buttom">
             <img src={highlightedIcon} alt="Highlighted" className="home-action-buttom-icon"/>
 
             <p className="home-action-buttom-title">Highlighted</p>
-          </div>
+          </Link>
 
-          <div className="home-action-buttom">
+          <Link to="/explore" className="home-buttom-link home-action-buttom">
             <img src={routesIcon} alt="Routes" className="home-action-buttom-icon"/>
 
             <p className="home-action-buttom-title">Routes</p>
-          </div>
+          </Link>
         </div>
       </div>
 
