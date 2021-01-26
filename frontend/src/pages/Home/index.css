@@ -51,10 +51,6 @@
   justify-content: center;
 }
 
-.home-buttom-link {
-  text-decoration: none;
-}
-
 .home-action-buttom {
   background-color: rgba(130, 181, 210, 0.78);
   display: flex;
@@ -66,11 +62,17 @@
   margin: 10px;
   border-radius: 8px;
   transition: 0.3s;
+  text-decoration: none;
+}
+
+.home-buttom-link {
+  text-decoration: none;
 }
 
 .home-action-buttom:hover {
   background-color: rgba(135, 185, 215, 1);
   scale: 1.1;
+  text-decoration: none;
 }
 
 .home-action-buttom-icon {
