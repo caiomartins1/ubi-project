@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+
+.event-detail-page {
+  font-size: 16px;
+  background-image: url('../../assets/detail-background.png');
+  height: 100vh;
+  max-height: 900px;
+}
+
+.event-detail-scroll {
+  font-family: 'Lato', sans-serif;
+  height: 85%;
+  margin-top: 1em;
+  overflow-y: scroll;
+  margin-bottom: 1em;
+}
+
+.event-detail-info {
+  color: #ffffff;
+  margin: 1em 1em;
+}
+
+.event-detail-name {
+  font-size: 2em;
+  font-weight: 400;
+  line-height: 1.2em;
+}
+
+.event-detail-description {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  font-weight: 300;
+  font-size: 1.35em;
+  line-height: 1.1em;
+}
+
+.event-detail-location {
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+.event-detail-directions-buttom {
+  color: #ffffff;
+  font-size: 1.25em;
+  font-weight: 700;
+  margin-top: 1em;
+  border-radius: 8px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  background-color: #80bd63;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s;
+}
+
+.event-detail-directions-buttom:hover {
+  background-color: #689b50;
+}
+
+.event-detail-directions-buttom-icon {
+  margin-right: 0.5em;
+}
+
+.event-detail-gallery-title {
+  color: #ffffff;
+  text-align: center;
+  font-weight: 700;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  font-size: 2em;
+}
+
+.event-detail-gallery-carousel {
+  margin-left: 1em;
+  margin-right: 1em;
+}

@@ -1,27 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import EventCard from '../EventCard';
-
-import leftArrowIcon from '../../assets/icons/left-arrow-icon.png';
-
+import TopNav from '../TopNav';
 
 import './index.css';
 
 function ListEvents({ title, typeIcon }) {
   return (
     <div className="list-events-page">
-      <nav className="list-events-nav">
-        <Link to="/">
-          <img src={leftArrowIcon} alt="" className="list-events-nav-back-icon"/>
-        </Link>
 
-        <h1 className="list-events-nav-title">{title}</h1>
-
-        <img src={typeIcon} alt="" className="list-events-nav-type-icon"/>
-      </nav>
+      <TopNav title={title} typeIcon={typeIcon}/>
 
       <main className="list-events-cards-container">
-        <EventCard />
+
+        <Link to="/detail">
+          <EventCard />
+        </Link>
         <EventCard />
         <EventCard />
         <EventCard />

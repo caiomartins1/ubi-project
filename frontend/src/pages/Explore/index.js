@@ -5,10 +5,10 @@ import exploreIcon from '../../assets/icons/explore-icon.png';
 
 import './index.css';
 
-function App() {
+function Explore() {
   return (
     <ListEvents title="Explore" typeIcon={exploreIcon}/>
   );
 }
 
-export default App;
+export default Explore;
