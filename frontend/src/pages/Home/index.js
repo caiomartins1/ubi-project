@@ -25,13 +25,13 @@ function Home() {
 
       <div className="home-main-buttons-container">
         <div className="home-horizontal-buttons-container">
-          <Link to="/explore" className="home-buttom-link home-action-buttom">
+          <Link to="/explore" className="home-buttom-link home-action-buttom home-action-buttom-left">
             <img src={exploreIcon} alt="Explore" className="home-action-buttom-icon"/>
 
             <p className="home-action-buttom-title">Explore</p>
           </Link>
 
-          <Link to="/upselling" className="home-buttom-link home-action-buttom">
+          <Link to="/upselling" className="home-buttom-link home-action-buttom home-action-buttom-right">
             <img src={upsellingIcon} alt="Upselling" className="home-action-buttom-icon"/>
 
             <p className="home-action-buttom-title">Upselling</p>
@@ -39,13 +39,13 @@ function Home() {
         </div>
 
         <div className="home-horizontal-buttons-container">
-          <Link to="/highlighted" className="home-buttom-link home-action-buttom">
+          <Link to="/highlighted" className="home-buttom-link home-action-buttom home-action-buttom-left">
             <img src={highlightedIcon} alt="Highlighted" className="home-action-buttom-icon"/>
 
             <p className="home-action-buttom-title">Highlighted</p>
           </Link>
 
-          <Link to="/routes" className="home-buttom-link home-action-buttom">
+          <Link to="/routes" className="home-buttom-link home-action-buttom home-action-buttom-right">
             <img src={routesIcon} alt="Routes" className="home-action-buttom-icon"/>
 
             <p className="home-action-buttom-title">Routes</p>
