@@ -39,6 +39,12 @@
   margin-top: 0.5em;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+}
+
+.list-events-card-city-container {
+  display: flex;
+  align-items: center;
 }
 
 .list-events-card-city {
@@ -48,5 +54,5 @@
 }
 
 .list-events-card-right-arrow {
-  margin-left: 50%;
+  margin-right: 30px;
 }

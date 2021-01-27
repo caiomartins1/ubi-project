@@ -56,8 +56,11 @@ class Content(models.Model):
     zip_code = models.CharField(max_length=20, blank=True)
     city = models.CharField(max_length=100, blank=True)
     image = models.ImageField(null=True, upload_to=content_image_file_path)
-    # country = CountryField(blank=True)
-    # geolocation = PointField(blank=True)
+    image_02 = models.ImageField(null=True, upload_to=content_image_file_path)
+    image_03 = models.ImageField(null=True, upload_to=content_image_file_path)
+    country = models.CharField(max_length=100, blank=True)
+    latitude = models.FloatField(null=True)
+    longitude = models.FloatField(null=True)
     is_parent = models.BooleanField(default=False)
     is_institutional = models.BooleanField(default=False)
 
@@ -67,7 +70,7 @@ class Content(models.Model):
 
 class ContentSibling(models.Model):
     class Meta:
-        verbose_name = 'content'
+        verbose_name = 'contentSibling'
 
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4,
                             editable=False, unique=True)
