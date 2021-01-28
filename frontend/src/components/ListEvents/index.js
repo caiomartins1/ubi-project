@@ -18,7 +18,7 @@ function ListEvents({ title, typeIcon, eventsArray }) {
       <Online>
         <main className="list-events-cards-container">
             {
-              eventsArray ?
+              eventsArray.length ?
 
               eventsArray.map(event => {
                 return (
