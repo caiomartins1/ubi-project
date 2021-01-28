@@ -9228,6 +9228,11 @@
     "uncontrollable" "^7.0.0"
     "warning" "^4.0.3"
 
+"react-detect-offline@^2.4.1":
+  "integrity" "sha512-Gg5pZrDvgSqVw8fOBo387zl2Q2+l0yYgELu9vowv6c/9AtjqWWGcnne4qbw6qDRP2vIiLcTNJh/LbTdBMq226Q=="
+  "resolved" "https://registry.npmjs.org/react-detect-offline/-/react-detect-offline-2.4.1.tgz"
+  "version" "2.4.1"
+
 "react-dev-utils@^11.0.1":
   "integrity" "sha512-rlgpCupaW6qQqvu0hvv2FDv40QG427fjghV56XyPcP5aKtOAPzNAhQ7bHqk1YdS2vpW1W7aSV3JobedxuPlBAA=="
   "resolved" "https://registry.npmjs.org/react-dev-utils/-/react-dev-utils-11.0.1.tgz"
