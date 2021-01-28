@@ -14,20 +14,37 @@ function Highlighted() {
     async function getHighlightedEvents() {
       const response = await api.get('/contenthighlights');
   
-      const filteredUpsellingEvents = await Promise.all(response.data.map(
-        async(upsellingEvent) => {
-          return await getUpsellingEventCardData(upsellingEvent.content);
+      const filteredHighlightedEvents = await Promise.all(response.data.map(
+        async(highlightedEvent) => {
+
+          if (isActiveHighlight(highlightedEvent)) {
+            return await getHighlightEventCardData(highlightedEvent.content);
+          }
         }
   
       ));
-  
-      setHighlightedEvents(filteredUpsellingEvents);
+        
+      setHighlightedEvents(validateHighlightedEvents(filteredHighlightedEvents));
     }
 
     getHighlightedEvents();
   }, []);
 
-  async function getUpsellingEventCardData(eventId) {
+  function isActiveHighlight(highlight) {
+    const startDate = new Date(highlight.start_date);
+    const endDate = new Date(highlight.end_date);
+    const nowDate = new Date(Date.now());
+
+    if (highlight.is_always) return true;
+
+    return ((nowDate >= startDate) && (nowDate < endDate));
+  }
+
+  function validateHighlightedEvents(eventsArray) {
+    return eventsArray.filter((event) => typeof(event) != 'undefined');
+  }
+
+  async function getHighlightEventCardData(eventId) {
     const response = await api.get(`/contents/${eventId}`);
 
     const { uuid, title, country, city, image } = response.data;

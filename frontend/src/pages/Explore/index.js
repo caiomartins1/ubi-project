@@ -1,3 +1,5 @@
+// TODO: Validate which events will display (Active field on model)
+
 import React, { useState, useEffect } from 'react';
 import api from '../../services/api';
 import ListEvents from '../../components/ListEvents';
