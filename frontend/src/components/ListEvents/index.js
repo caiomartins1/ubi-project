@@ -15,13 +15,25 @@ function ListEvents({ title, typeIcon, eventsArray }) {
 
       <main className="list-events-cards-container">
 
-        {eventsArray.map(event => {
+        {
+          eventsArray ?
+
+          eventsArray.map(event => {
             return (
-              <Link to="/detail" key={event.uuid}>
+              <Link to={{pathname: '/detail', state: { eventId: event.uuid}}} key={event.uuid}>
                 <EventCard img={event.image} title={event.title} city={event.city}/>
               </Link>
             )
           })
+
+          : 
+          
+          <div className="no-events-available-container">
+            <h1 className="no-events-available">
+              {`No events available right now :(`}
+            </h1>
+          </div>
+          
         }
 
       </main>

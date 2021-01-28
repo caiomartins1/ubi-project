@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import api from '../../services/api';
 import L from 'leaflet';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { Carousel } from 'react-bootstrap';
 import TopNav from '../../components/TopNav';
 
-import sampleImg from '../../assets/sample-card-img.png';
 import locationIcon from '../../assets/icons/location-icon.png';
 import exploreIcon from '../../assets/icons/explore-icon.png';
 import directionsIcon from '../../assets/icons/directions-icon.png';
@@ -12,11 +12,45 @@ import directionsIcon from '../../assets/icons/directions-icon.png';
 import 'leaflet/dist/leaflet.css';
 import './index.css';
 
-function EventDetail({ title, typeIcon}) {
+function EventDetail(props) {
+
+  const [eventDetailed, setEventDetailed] = useState({});
 
   const locationIconLeaflet = L.icon({
     iconUrl: locationIcon,
   });
+
+  useEffect(() => {
+    const { eventId } = props.location.state; 
+
+    async function getEventDetails(id) {
+      const response = await api.get(`/contents/${id}`);
+      const filteredEvent = filterEventDetailsToEventObject(response.data);
+      setEventDetailed(filteredEvent);
+    }
+
+    getEventDetails(eventId);
+  });
+
+  function filterEventDetailsToEventObject(responseData) {
+    const { title, city, description, latitude, longitude, image, image_02, image_03 } = responseData;
+    const images = [image, image_02, image_03];
+
+    const event =  {
+      title,
+      city,
+      description,
+      latitude,
+      longitude,
+      images
+    }
+
+    return event;
+  }
+
+  function handleDirectionsClick() {
+    window.location = `https://www.google.com/maps/@${eventDetailed.latitude},${eventDetailed.longitude},15z`;
+  }
 
   return (
     <div className="event-detail-page">
@@ -24,15 +58,16 @@ function EventDetail({ title, typeIcon}) {
 
       <div className="event-detail-scroll">
         <div className="event-detail-info">
-          <h1 className="event-detail-name">Helicopter Adventure, <br /> Addu City</h1>
+          <h1 className="event-detail-name">{`${eventDetailed.title}, `}{eventDetailed.city}</h1>
 
-          <h3 className="event-detail-description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Labore modi beatae placeat nemo enim temporibus accusamus pariatur aspernatur. Vitae assumenda quasi nemo sed mollitia, dolore numquam quisquam eveniet impedit doloremque!</h3>
+          <h3 className="event-detail-description">{eventDetailed.description}</h3>
         </div>
 
         <div className="event-detail-location">
           <div className="event-detail-map">
+          {eventDetailed.latitude && eventDetailed.longitude && 
             <MapContainer 
-              center={[-0.6381564,73.1394224]} 
+              center={[eventDetailed.latitude, eventDetailed.longitude]} 
               zoom="4" 
               scrollWheelZoom={false}
               style={{height: "400px", width: "100%"}}
@@ -42,15 +77,15 @@ function EventDetail({ title, typeIcon}) {
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               />
 
-              <Marker position={[3.1097165,70.9964044]} icon={locationIconLeaflet}>
+              <Marker position={[eventDetailed.latitude, eventDetailed.longitude]} icon={locationIconLeaflet}>
                 <Popup>
-                  Entry Point.
+                  {eventDetailed.title}
                 </Popup>
               </Marker>
-
             </MapContainer>
+          }
           </div>
-          <div className="event-detail-directions-buttom">
+          <div className="event-detail-directions-buttom" onClick={handleDirectionsClick}>
             <img src={directionsIcon} alt="" className="event-detail-directions-buttom-icon"/>
             <p className="event-detail-directions-buttom-title">Directions</p>
           </div>
@@ -60,29 +95,23 @@ function EventDetail({ title, typeIcon}) {
           <h1 className="event-detail-gallery-title">Gallery</h1>
           <div className="event-detail-gallery-carousel">
             <Carousel>
-              <Carousel.Item>
-                <img
-                  className="d-block w-100"
-                  src={sampleImg}
-                  alt="First slide"
-                />
-              </Carousel.Item>
 
-              <Carousel.Item>
-                <img
-                  className="d-block w-100"
-                  src={sampleImg}
-                  alt="Third slide"
-                />
-              </Carousel.Item>
+              {
+                eventDetailed.images ? 
+                eventDetailed.images.map(image => {
+                  return (
+                    <Carousel.Item key={image}>
+                      <img
+                        className="d-block w-100 event-detail-gallery-image"
+                        src={image}
+                        alt="First slide"
+                      />
+                    </Carousel.Item>
+                  )
+                })
+                : <></>
 
-              <Carousel.Item>
-                <img
-                  className="d-block w-100"
-                  src={sampleImg}
-                  alt="Third slide"
-                />
-              </Carousel.Item>
+              }
             </Carousel>
           </div>
         </div>
