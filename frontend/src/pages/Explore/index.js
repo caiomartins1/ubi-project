@@ -1,5 +1,3 @@
-// TODO: Validate which events will display (Active field on model)
-
 import React, { useState, useEffect } from 'react';
 import api from '../../services/api';
 import ListEvents from '../../components/ListEvents';
@@ -16,10 +14,12 @@ function Explore() {
     async function getEvents() {
       const response = await api.get('/contents');
   
-      const filteredEvents = response.data.map(event => {
-        const { uuid, title, city, image } = event;
-        return { uuid, title, city, image }
-      })
+      const filteredEvents = response.data
+        .filter(event => event.active)
+        .map(event => {
+          const { uuid, title, city, image } = event;
+          return { uuid, title, city, image }
+        })
   
       setEvents(filteredEvents);
     }

@@ -41,13 +41,15 @@ function Highlighted() {
   }
 
   function validateHighlightedEvents(eventsArray) {
-    return eventsArray.filter((event) => typeof(event) != 'undefined');
+    return eventsArray.filter((event) => event !== 'undefined' && event !== null);
   }
 
   async function getHighlightEventCardData(eventId) {
     const response = await api.get(`/contents/${eventId}`);
 
-    const { uuid, title, country, city, image } = response.data;
+    const { uuid, title, country, city, image, active } = response.data;
+
+    if (!active) { return null };
 
     return { uuid, title, country, city, image };
   }

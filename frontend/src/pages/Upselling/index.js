@@ -23,17 +23,23 @@ function Upselling() {
   
       ));
   
-      setUpsellingEvents(filteredUpsellingEvents);
+      setUpsellingEvents(validateUpsellingEvents(filteredUpsellingEvents));
     }
 
     getUpsellingEvents();
   }, []);
 
+  function validateUpsellingEvents(eventsArray) {
+    return eventsArray.filter((event) => event !== 'undefined' && event !== null);
+  }
+
   async function getUpsellingEventCardData(eventId) {
     const response = await api.get(`/contents/${eventId}`);
 
-    const { uuid, title, country, city, image } = response.data;
+    const { uuid, title, country, city, image, active } = response.data;
 
+    if (!active) return null;
+    
     return { uuid, title, country, city, image };
   }
 
