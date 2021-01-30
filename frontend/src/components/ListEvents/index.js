@@ -1,5 +1,3 @@
-//TODO: Filter by active
-
 import React from 'react';
 import { Offline, Online } from "react-detect-offline";
 import { Link } from 'react-router-dom';
@@ -9,7 +7,7 @@ import Off from '../Off';
 
 import './index.css';
 
-function ListEvents({ title, typeIcon, eventsArray }) {
+function ListEvents({ title, typeIcon, eventsArray, isRoute = false }) {
   return (
     <div className="list-events-page">
 
@@ -21,6 +19,13 @@ function ListEvents({ title, typeIcon, eventsArray }) {
               eventsArray.length ?
 
               eventsArray.map(event => {
+                if (isRoute) {
+                  return (
+                    <Link to={{pathname: '/route/events', state: { parentId: event.id }}} key={event.id}>
+                      <EventCard img={event.image} title={event.title} city={event.city}/>
+                    </Link>
+                  )
+                }
                 return (
                   <Link to={{pathname: '/detail', state: { eventId: event.uuid}}} key={event.uuid}>
                     <EventCard img={event.image} title={event.title} city={event.city}/>

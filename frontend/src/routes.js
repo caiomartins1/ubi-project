@@ -7,6 +7,7 @@ import Highlighted from './pages/Highlighted';
 import Upselling from './pages/Upselling';
 import RoutesP from './pages/Routes';
 import EventDetail from './pages/EventDetail';
+import RouteEvents from './pages/RouteEvents';
 
 function Routes() {
   return (
@@ -17,6 +18,7 @@ function Routes() {
       <Route path="/upselling" component={Upselling} />
       <Route path="/routes" component={RoutesP} />
       <Route path="/detail" component={EventDetail} />
+      <Route path="/route/events" component={RouteEvents} />
     </BrowserRouter>
   );
 }

@@ -21,7 +21,7 @@ class ContentSerializer(serializers.ModelSerializer):
     # title and image
     class Meta:
         model = Content
-        fields = ('uuid', 'client', 'title', 'description', 'country', 'city', 'latitude', 'longitude', 'image', 'image_02', 'image_03')
+        fields = ('uuid', 'client', 'title', 'description', 'country', 'city', 'latitude', 'longitude', 'image', 'image_02', 'image_03', 'active', 'is_parent')
         read_only_fields = ('uuid',)
 
 
