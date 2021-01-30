@@ -7,7 +7,7 @@ import './index.css';
 
 function Routes() {
   return (
-    <ListEvents title="Routes" typeIcon={routesIcon} />
+    <ListEvents title="Routes" typeIcon={routesIcon} eventsArray={[]}/>
   );
 }
 

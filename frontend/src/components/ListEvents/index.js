@@ -41,7 +41,7 @@ function ListEvents({ title, typeIcon, eventsArray }) {
       </Online>
 
       <Offline>
-        <Off msg="Whooops! You need Internet connection to access this page :( "/>
+        <Off msg="Whooops! You need Internet connection to access this page :("/>
       </Offline>
     </div>
   );
