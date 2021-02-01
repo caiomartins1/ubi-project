@@ -39,6 +39,7 @@
   margin-top: 1vh;
   font-size: 2em;
   font-weight: 400;
+  padding-left: 4em;
 }
 
 .home-main-buttons-container {
@@ -86,39 +87,31 @@
   margin-top: 0.2em;
 }
 
-.home-language-buttom-container {
+.home-languague-buttom {
+  background-color: rgba(135, 185, 215, 1);
   display: flex;
   justify-content: center;
-  align-items: center;
-  margin-top: 10px;
-}
-
-.home-language-buttom {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 0.94em 0px;
-  font-family: 'Patrick Hand', cursive;
-  color: #ffffff;
-  width: 100%;
-  background-color: rgba(130, 181, 210, 0.78);
-  border-radius: 8px;
-  transition: 0.3s;
   margin-left: 2em;
   margin-right: 2em;
-}
-
-.home-language-buttom:hover {
-  background-color: rgba(135, 185, 215, 1);
+  border-radius: 8px;
+  margin-top: 10px;
+  padding: 10px 10px;
+  align-items: center;
 }
 
 .home-language-buttom-icon {
-  margin-left: 5em;
+  width: 50px;
+  height: 30px;
 }
 
-.home-language-buttom-text {
-  font-size: 1.25em;
-  margin-left: 1.88em;
+.home-language-buttom-input {
+  width: 60%;
+  font-family: 'Patrick Hand', cursive;
+  background-color: rgba(135, 185, 215, 1);
+  color: #ffffff;
+  text-align: center;
+  margin-left: 1em;
+  padding: 5px;
 }
 
 @media only screen and (min-height: 800px) {
