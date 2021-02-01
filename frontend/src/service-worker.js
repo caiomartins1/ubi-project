@@ -70,15 +70,70 @@ self.addEventListener('message', (event) => {
 });
 
 // Any other custom service worker logic can go here.
-self.addEventListener('install', event => {
-  console.log('Service worker installing...');
-  self.skipWaiting();
-});
+// const filesToCache = [
+//   'lang.json'
+// ];
 
-self.addEventListener('activate', event => {
-  console.log('Service worker activating...');
-});
+// const staticCacheName = 'pages-cache-v2';
 
-self.addEventListener('fetch', event => {
-  console.log('Fetching:', event.request.url);
-});
+// // Cache the application shell
+// self.addEventListener('install', event => {
+//   console.log('Attempting to install service worker and cache static assets');
+//   event.waitUntil(
+//     caches.open(staticCacheName)
+//       .then(cache => {
+//         return cache.addAll(filesToCache);
+//       })
+//   );
+// });
+
+// // Delete outdated files
+// self.addEventListener('activate', event => {
+//   console.log('Activating new service worker...');
+
+//   const cacheWhitelist = [staticCacheName];
+
+//   event.waitUntil(
+//     caches.keys().then(cacheNames => {
+//       return Promise.all(
+//         cacheNames.map(cacheName => {
+//           if (cacheWhitelist.indexOf(cacheName) === -1) {
+//             return caches.delete(cacheName);
+//           }
+//         })
+//       );
+//     })
+//   );
+// });
+
+// Serve files from the cache
+// self.addEventListener('fetch', event => {
+//   console.log('Fetch event for ', event.request.url);
+//   event.respondWith(
+//     caches.match(event.request)
+//       .then(response => {
+//         if (response) {
+//           console.log('Found ', event.request.url, ' in cache');
+//           return response
+//         }
+//         console.log('Network requests for ', event.request.url);
+//         return fetch(event.request)
+//           .then(response => {
+//             // TODO 5 - Responde with a 404 page
+//             // if (response.status === 404) {
+//             //   return caches.match('/');
+//             // }
+
+//             //
+//             return caches.open(staticCacheName).then(cache => {
+//               cache.put(event.request.url, response.clone());
+//               return response;
+//             });
+//           });
+//       })
+//       .catch(error => {
+//         console.log('Error, ', error);
+//         // return caches.match('/');
+//       })
+//   )
+// });

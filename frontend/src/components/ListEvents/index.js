@@ -13,7 +13,7 @@ function ListEvents({ title, typeIcon, eventsArray, isRoute = false }) {
 
       <TopNav title={title} typeIcon={typeIcon}/>
 
-      <Online>
+      {/* <Online> */}
         <main className="list-events-cards-container">
             {
               eventsArray.length ?
@@ -21,7 +21,7 @@ function ListEvents({ title, typeIcon, eventsArray, isRoute = false }) {
               eventsArray.map(event => {
                 if (isRoute) {
                   return (
-                    <Link to={{pathname: '/route/events', state: { parentId: event.id }}} key={event.id}>
+                    <Link to={{pathname: '/route/events', state: { parentId: event.uuid }}} key={event.uuid}>
                       <EventCard img={event.image} title={event.title} city={event.city}/>
                     </Link>
                   )
@@ -43,11 +43,11 @@ function ListEvents({ title, typeIcon, eventsArray, isRoute = false }) {
               
             }
         </main>
-      </Online>
+      {/* </Online> */}
 
-      <Offline>
-        <Off msg="Whooops! You need Internet connection to access this page :("/>
-      </Offline>
+      {/* <Offline> */}
+        {/* <Off msg="Whooops! You need Internet connection to access this page :("/> */}
+      {/* </Offline> */}
     </div>
   );
 }

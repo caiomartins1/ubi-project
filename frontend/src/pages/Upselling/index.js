@@ -1,8 +1,7 @@
-// TODO: Validate which events will display (Active field on model)
-
 import React, { useState, useEffect } from 'react';
 import api from '../../services/api';
 import ListEvents from '../../components/ListEvents';
+import langs from '../../lang/lang';
 
 import upsellingIcon from '../../assets/icons/upselling-icon.png';
 
@@ -11,6 +10,10 @@ import './index.css';
 function Upselling() {
 
   const [upsellingEvents, setUpsellingEvents] = useState([]);
+
+  const [lang, ] = useState(
+    localStorage.getItem('lang') || 'en'
+  );
 
   useEffect(() => {
     async function getUpsellingEvents() {
@@ -44,7 +47,7 @@ function Upselling() {
   }
 
   return (
-    <ListEvents title="Upselling" typeIcon={upsellingIcon} eventsArray={upsellingEvents}/>
+    <ListEvents title={langs['home'][lang].upselling}  typeIcon={upsellingIcon} eventsArray={upsellingEvents}/>
   );
 }
 

@@ -14,10 +14,15 @@ import directionsIcon from '../../assets/icons/directions-icon.png';
 
 import 'leaflet/dist/leaflet.css';
 import './index.css';
+import langs from '../../lang/lang';
 
 function EventDetail(props) {
 
   const [eventDetailed, setEventDetailed] = useState({});
+
+  const [lang, ] = useState(
+    localStorage.getItem('lang') || 'en'
+  );
 
   const locationIconLeaflet = L.icon({
     iconUrl: locationIcon,
@@ -57,7 +62,7 @@ function EventDetail(props) {
 
   return (
     <div className="event-detail-page">
-      <TopNav title={'Attraction'} typeIcon={exploreIcon}/>
+      <TopNav title={langs['event-detail'][lang].title} typeIcon={exploreIcon}/>
 
       <Online>
         <div className="event-detail-scroll">

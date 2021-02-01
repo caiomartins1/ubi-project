@@ -1,8 +1,6 @@
-// TODO: Language dropdown
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import langApi from '../../services/lang';
+import langs from '../../lang/lang';
 
 import exploreIcon from '../../assets/icons/explore-icon.png';
 import upsellingIcon from '../../assets/icons/upselling-icon.png';
@@ -14,6 +12,7 @@ import frFlagIcon from '../../assets/icons/france-flag-icon.png';
 import deFlagIcon from '../../assets/icons/germany-flag-icon.png';
 
 import './index.css';
+
 
 function Home() {
 
@@ -36,20 +35,19 @@ function Home() {
     },
   };
 
-  const [lang, setLang] = useState('en');
+  const [lang, setLang] = React.useState(
+    localStorage.getItem('lang') || 'en'
+  );
+ 
   const [translatedText, setTranslatedText] = useState({});
 
   useEffect(() => {
+    localStorage.setItem('lang', lang);
     getTranslatedText(lang);
   }, [lang]);
 
-
-  async function getTranslatedText(lang) {
-    const response = await langApi.get('/lang.json');
-
-    const translatedContent = response.data['home'][lang];
-
-    setTranslatedText(translatedContent);
+  function getTranslatedText(lang) {
+    setTranslatedText(langs['home'][lang]);
   }
 
   function handleLanguageChange(event) {
@@ -68,7 +66,7 @@ function Home() {
 
       <div className="home-main-buttons-container">
         <div className="home-horizontal-buttons-container">
-          <Link to="/explore" className="home-buttom-link home-action-buttom home-action-buttom-left">
+          <Link to="explore" className="home-buttom-link home-action-buttom home-action-buttom-left">
             <img src={exploreIcon} alt="Explore" className="home-action-buttom-icon"/>
 
             <p className="home-action-buttom-title">{translatedText['explore']}</p>

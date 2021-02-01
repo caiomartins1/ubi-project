@@ -5,10 +5,15 @@ import ListEvents from '../../components/ListEvents';
 import routesIcon from '../../assets/icons/routes-icon.png';
 
 import './index.css';
+import langs from '../../lang/lang';
 
 function Routes() {
   
   const [events, setEvents] = useState([]);
+
+  const [lang, ] = useState(
+    localStorage.getItem('lang') || 'en'
+  );
 
   useEffect(() => {
     async function createRoutes() {
@@ -32,8 +37,23 @@ function Routes() {
       return eventsWithSiblings.filter(event => event !== null)
 
     }
+
+    function createCustomEventWithRouteParents(parentsArray) {
+      const customEvents = parentsArray
+        .map((event, index) => {
+          return {
+            image: event.image,
+            title: `${langs['routes'][lang].single} #${index + 1}`,
+            city: event.country,
+            uuid: event.uuid
+          }
+        });
+  
+      return customEvents;
+    }
+
     createRoutes();
-  }, []);
+  }, [lang]);
 
 
   async function countSiblings(parentId) {
@@ -50,23 +70,8 @@ function Routes() {
     return siblings;
   }
 
-  function createCustomEventWithRouteParents(parentsArray) {
-      const customEvents = parentsArray
-        .map((event, index) => {
-          return {
-            image: event.image,
-            title: `Route #${index + 1}`,
-            city: event.country,
-            id: event.uuid
-          }
-        });
-  
-      return customEvents;
-  }
-
-
   return (
-    <ListEvents title="Routes" typeIcon={routesIcon} eventsArray={events} isRoute={true}/>
+    <ListEvents title={langs['home'][lang].routes} typeIcon={routesIcon} eventsArray={events} isRoute={true}/>
   );
 }
 

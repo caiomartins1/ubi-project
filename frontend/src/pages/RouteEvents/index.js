@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import api from '../../services/api';
 import ListEvents from '../../components/ListEvents';
+import langs from '../../lang/lang';
 
 import routesIcon from '../../assets/icons/routes-icon.png';
 
@@ -9,6 +10,10 @@ import './index.css';
 function RouteEvents(props) {
 
   const [events, setEvents] = useState([]);
+
+  const [lang, ] = useState(
+    localStorage.getItem('lang') || 'en'
+  );
 
   useEffect(() => {
     const { parentId } = props.location.state; 
@@ -48,7 +53,7 @@ function RouteEvents(props) {
   }
 
   return (
-    <ListEvents title="Route's Events" typeIcon={routesIcon} eventsArray={events}/>
+    <ListEvents title={langs['routes'][lang].detail} typeIcon={routesIcon} eventsArray={events}/>
   );
 }
 

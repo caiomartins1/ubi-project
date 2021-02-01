@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import api from '../../services/api';
 import ListEvents from '../../components/ListEvents';
+import langs from '../../lang/lang';
+
 
 import highlightedIcon from '../../assets/icons/highlighted-icon.png';
 
@@ -9,6 +11,10 @@ import './index.css';
 function Highlighted() {
 
   const [highlightedEvents, setHighlightedEvents] = useState([]);
+
+  const [lang, ] = useState(
+    localStorage.getItem('lang') || 'en'
+  );
 
   useEffect(() => {
     async function getHighlightedEvents() {
@@ -41,7 +47,7 @@ function Highlighted() {
   }
 
   function validateHighlightedEvents(eventsArray) {
-    return eventsArray.filter((event) => event !== 'undefined' && event !== null);
+    return eventsArray.filter((event) => typeof event !== 'undefined' && event !== null);
   }
 
   async function getHighlightEventCardData(eventId) {
@@ -55,7 +61,7 @@ function Highlighted() {
   }
 
   return (
-    <ListEvents title="Highlighted" typeIcon={highlightedIcon} eventsArray={highlightedEvents}/>
+    <ListEvents title={langs['home'][lang].highlighted} typeIcon={highlightedIcon} eventsArray={highlightedEvents}/>
   );
 }
 

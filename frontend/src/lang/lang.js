@@ -1,4 +1,4 @@
-{
+const langs = {
   "home": {
     "en": {
       "subheading-1": "Visit us",
@@ -32,5 +32,40 @@
       "highlighted": "Souligné",
       "routes": "Itinéraires"
     }
-  }
+  },
+  "routes": {
+    "en": {
+      "single": "Route",
+      "detail": "Route's Events"
+    },
+    "pt": {
+      "single": "Rota",
+      "detail": "Eventos da Rota"
+    },
+    "de": {
+      "single": "Route",
+      "detail": "Ereignisse der Route"
+    },
+    "fr": {
+      "single": "Itinéraire",
+      "detail": "Événements d'itinéraire"
+    }
+  },
+  "event-detail": {
+    "en": {
+      "title": "Event",
+    },
+    "pt": {
+      "title": "Evento",
+    },
+    "de": {
+      "title": "Veranstaltung",
+    },
+    "fr": {
+      "title": "Événement",
+    }
+  },
+
 }
+
+export default langs;

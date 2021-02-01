@@ -109,7 +109,8 @@
   font-family: 'Patrick Hand', cursive;
   background-color: rgba(135, 185, 215, 1);
   color: #ffffff;
-  text-align: center;
+  font-size: 1.2em;
+  text-align-last: center;
   margin-left: 1em;
   padding: 5px;
 }
