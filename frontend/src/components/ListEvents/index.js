@@ -38,7 +38,7 @@ function ListEvents({ title, typeIcon, eventsArray, isRoute = false }) {
 
             : 
                  
-            <Off msg={langs['error'][lang].msg} />      
+            <Off msg={langs['error'][lang].na} />      
           }
       </main>
     </div>

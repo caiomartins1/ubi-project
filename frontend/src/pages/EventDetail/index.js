@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Offline, Online } from "react-detect-offline";
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { Carousel } from 'react-bootstrap';
 
@@ -64,7 +63,8 @@ function EventDetail(props) {
     <div className="event-detail-page">
       <TopNav title={langs['event-detail'][lang].title} typeIcon={exploreIcon}/>
 
-      <Online>
+      {
+        eventDetailed.title ?  
         <div className="event-detail-scroll">
           <div className="event-detail-info">
             <h1 className="event-detail-name">{`${eventDetailed.title}, `}{eventDetailed.city}</h1>
@@ -103,7 +103,7 @@ function EventDetail(props) {
           </div>
 
           <div className="event-detail-gallery">
-            <h1 className="event-detail-gallery-title">Gallery</h1>
+            <h1 className="event-detail-gallery-title">{langs['event-detail'][lang].gallery}</h1>
 
             <div className="event-detail-gallery-carousel">
               <Carousel>
@@ -128,12 +128,10 @@ function EventDetail(props) {
             </div>
           </div>
         </div>
-      </Online>
-      <Offline>
-        <Off msg="Whooops! You need Internet connection to access this page :( "/>
-      </Offline>
-      
-      
+        : 
+          <Off msg={langs['error'][lang].off}/>
+
+      }
     </div>
   )
 }

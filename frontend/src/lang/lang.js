@@ -54,29 +54,37 @@ const langs = {
   "event-detail": {
     "en": {
       "title": "Event",
+      "gallery": "Gallery"
     },
     "pt": {
       "title": "Evento",
+      "gallery": "Galeria"
     },
     "de": {
       "title": "Veranstaltung",
+      "gallery": "Galerie"
     },
     "fr": {
       "title": "Événement",
+      "gallery": "Galerie"
     }
   },
   "error": {
     "en": {
-      "msg": "No events available right now :("
+      "na": "No events available right now :(",
+      "off": "Whooops! You need Internet connection to access this page :("
     },
     "pt": {
-      "msg": "Nenhum evento disponível no momento :("
+      "na": "Nenhum evento disponível no momento :(",
+      "off": "Whooops! Vous avez besoin d'une connexion Internet pour accéder à cette page :("
     },
     "de": {
-      "msg": "Derzeit sind keine Veranstaltungen verfügbar :("
+      "na": "Derzeit sind keine Veranstaltungen verfügbar :(",
+      "off": "Whooops! Sie benötigen eine Internetverbindung, um auf diese Seite zugreifen zu können :("
     },
     "fr": {
-      "msg": "Aucun événement disponible pour le moment :("
+      "na": "Aucun événement disponible pour le moment :(",
+      "off": "Whooops! Vous avez besoin d'une connexion Internet pour accéder à cette page :("
     },
   }
 
