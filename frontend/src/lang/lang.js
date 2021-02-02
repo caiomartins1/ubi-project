@@ -65,6 +65,20 @@ const langs = {
       "title": "Événement",
     }
   },
+  "error": {
+    "en": {
+      "msg": "No events available right now :("
+    },
+    "pt": {
+      "msg": "Nenhum evento disponível no momento :("
+    },
+    "de": {
+      "msg": "Derzeit sind keine Veranstaltungen verfügbar :("
+    },
+    "fr": {
+      "msg": "Aucun événement disponible pour le moment :("
+    },
+  }
 
 }
 
